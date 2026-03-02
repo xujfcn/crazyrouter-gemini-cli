@@ -2,7 +2,7 @@
 
 > Use Google Gemini CLI through Crazyrouter — Save 45% on Gemini API costs.
 
-[Crazyrouter](https://crazyrouter.com?ref=github) — One API key, 300+ models, 45% cheaper.
+[Crazyrouter](https://crazyrouter.com?utm_source=github&utm_medium=github&utm_campaign=dev_community?ref=github) — One API key, 300+ models, 45% cheaper.
 
 ## 💰 Price Comparison
 
@@ -57,9 +57,9 @@ Gemini 2.5 Pro has the largest context window (1M tokens), making it ideal for l
 ```bash
 # One Crazyrouter key for all three tools
 export OPENAI_API_KEY=sk-your-crazyrouter-key
-export OPENAI_BASE_URL=https://crazyrouter.com/v1
+export OPENAI_BASE_URL=https://crazyrouter.com?utm_source=github&utm_medium=github&utm_campaign=dev_community/v1
 export ANTHROPIC_API_KEY=sk-your-crazyrouter-key
-export ANTHROPIC_BASE_URL=https://crazyrouter.com
+export ANTHROPIC_BASE_URL=https://crazyrouter.com?utm_source=github&utm_medium=github&utm_campaign=dev_community
 export GEMINI_API_KEY=sk-your-crazyrouter-key
 
 # Now use any of them
@@ -80,7 +80,7 @@ A: Through Crazyrouter you can access Claude, GPT, and 300+ other models.
 A: Node.js 18+ is required.
 
 ## 🔗 Links
-- 🌐 [Crazyrouter](https://crazyrouter.com?ref=github)
+- 🌐 [Crazyrouter](https://crazyrouter.com?utm_source=github&utm_medium=github&utm_campaign=dev_community?ref=github)
 - 💎 [Gemini CLI](https://github.com/google-gemini/gemini-cli)
 - 💬 [Telegram](https://t.me/crzrouter)
 
