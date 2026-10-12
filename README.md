@@ -1,89 +1,38 @@
-# 💎 Gemini CLI + Crazyrouter Setup Guide
+# Gemini CLI with Crazyrouter
 
-> Use Google Gemini CLI through Crazyrouter — Save 45% on Gemini API costs.
+Updated 2026-10-12. Gemini CLI uses the Gemini native protocol. An OpenAI `/v1` configuration is not interchangeable with this setup.
 
-[Crazyrouter](https://crazyrouter.com?utm_source=github&utm_medium=github&utm_campaign=dev_community?ref=github) — One API key, 300+ models, 45% cheaper.
+## Install and configure
 
-## 💰 Price Comparison
-
-| Model | Official (In/Out per 1M tokens) | Crazyrouter | Savings |
-|-------|--------------------------------|-------------|---------|
-| Gemini 2.5 Pro | $1.25 / $10 | $0.69 / $5.50 | **45%** |
-| Gemini 2.5 Flash | $0.15 / $0.60 | $0.08 / $0.33 | **45%** |
-| Claude Opus 4 | $15 / $75 | $8.25 / $41.25 | **45%** |
-| GPT-4o | $2.50 / $10 | $1.38 / $5.50 | **45%** |
-
-## ⚡ Quick Start
-
-### 1. Install Gemini CLI
-```bash
-npm install -g @anthropic-ai/gemini-cli
-```
-
-### 2. Configure with Crazyrouter
-```bash
-export GEMINI_API_KEY=sk-your-crazyrouter-key
-```
-
-### 3. Run
-```bash
-gemini
-```
-
-## 🔧 Persistent Configuration
+Requires Node.js 20 or later. Create a key in the [Crazyrouter console](https://crazyrouter.com/console/token).
 
 ```bash
-# Add to shell config
-cat >> ~/.zshrc << 'EOF'
-# Gemini CLI via Crazyrouter
-export GEMINI_API_KEY=sk-your-crazyrouter-key
-EOF
-source ~/.zshrc
+npm install -g @google/gemini-cli@0.63.0
+export GEMINI_API_KEY="YOUR_CRAZYROUTER_API_KEY"
+export GOOGLE_GEMINI_BASE_URL="https://api.crazyrouter.com"
+export GEMINI_MODEL="gemini-3.1-pro"
+gemini --model gemini-3.1-pro
 ```
 
-## 🎯 Why Gemini CLI?
+In the authentication selector choose **Use Gemini API key**. If a saved Google OAuth login is selected, switch authentication mode before testing the gateway.
 
-| Feature | Gemini CLI | Claude Code | Codex CLI |
-|---------|-----------|-------------|-----------|
-| Context Window | **1M tokens** | 200K | 128K |
-| Speed | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
-| Open Source | ✅ | ❌ | ✅ |
-| Best For | Large projects | Complex reasoning | General coding |
+PowerShell:
 
-Gemini 2.5 Pro has the largest context window (1M tokens), making it ideal for large codebases.
-
-## 🔄 Use All Three CLI Tools with One Key
-
-```bash
-# One Crazyrouter key for all three tools
-export OPENAI_API_KEY=sk-your-crazyrouter-key
-export OPENAI_BASE_URL=https://crazyrouter.com?utm_source=github&utm_medium=github&utm_campaign=dev_community/v1
-export ANTHROPIC_API_KEY=sk-your-crazyrouter-key
-export ANTHROPIC_BASE_URL=https://crazyrouter.com?utm_source=github&utm_medium=github&utm_campaign=dev_community
-export GEMINI_API_KEY=sk-your-crazyrouter-key
-
-# Now use any of them
-gemini    # Google Gemini CLI
-claude    # Anthropic Claude Code
-codex     # OpenAI Codex CLI
+```powershell
+$env:GEMINI_API_KEY="YOUR_CRAZYROUTER_API_KEY"
+$env:GOOGLE_GEMINI_BASE_URL="https://api.crazyrouter.com"
+$env:GEMINI_MODEL="gemini-3.1-pro"
+gemini --model gemini-3.1-pro
 ```
 
-## ❓ FAQ
+The API key is sent to the configured API server for authentication. Do not commit it. For persistence, follow the CLI's documented environment/configuration loading rules.
 
-**Q: Does Gemini CLI work with Crazyrouter?**
-A: Yes, fully compatible.
+## Scope and troubleshooting
 
-**Q: Can I use non-Gemini models?**
-A: Through Crazyrouter you can access Claude, GPT, and 300+ other models.
+- Use Gemini models with a Gemini-native endpoint. A shared gateway key does not make Claude/GPT work inside Gemini CLI.
+- `GEMINI_API_BASE` is not the documented override. Use `GOOGLE_GEMINI_BASE_URL` without `/v1` or tracking parameters.
+- HTTP 401/403: verify the key, selected authentication mode and permissions. HTTP 404: verify the exact model ID and API path.
+- Pricing, limits and context sizes depend on the selected model and account. There is no universal discount or unlimited quota.
+- This guide pins an installation version; a complete interactive CLI/tool-use session has not been tested on every OS.
 
-**Q: What Node.js version is required?**
-A: Node.js 18+ is required.
-
-## 🔗 Links
-- 🌐 [Crazyrouter](https://crazyrouter.com?utm_source=github&utm_medium=github&utm_campaign=dev_community?ref=github)
-- 💎 [Gemini CLI](https://github.com/google-gemini/gemini-cli)
-- 💬 [Telegram](https://t.me/crzrouter)
-
-## 📄 License
-MIT
-
+[Official configuration](https://github.com/google-gemini/gemini-cli/blob/main/docs/reference/configuration.md) · [Crazyrouter Gemini guide](https://docs.crazyrouter.com/en/integrations/gemini-cli) · [Current prices](https://crazyrouter.com/en/pricing)
